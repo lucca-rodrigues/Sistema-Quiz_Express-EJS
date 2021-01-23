@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Plataforma de perguntas</title>
+</head>
+<body>
+    <h1>Hello World Template EJS</h1>
+    
+    <h2>Olá <%= nome %></h2>
+    <h3>Você tem <%= idade  %> anos!</h3>
+
+    <% if (message == true) { %>
+        <%= messageError %>
+    <% } else { %>
+        <h3>Tudo Ok!</h3>
+    <% } %>
+
+    <h3>Lista de produtos:</h3>
+    
+    <% produtos.forEach(produto =>{ %> 
+        <div>
+            <%= produto.nome %> 
+            <%= produto.preco %> 
+        </div>
+    <% }); %> 
+</body>
+</html>
