@@ -22,7 +22,7 @@ app.get("/", (req, res) =>{
 });
 
 app.get("/perguntas", (req, res) => {
-    Perguntas.findAll({ raw: true})
+    Perguntas.findAll({ raw: true, order:[['createdAt', 'DESC']]})
     .then(perguntas => {
         res.render("Perguntas", {perguntas});
     })
