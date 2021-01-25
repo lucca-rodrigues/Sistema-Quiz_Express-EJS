@@ -1,0 +1,27 @@
+  <%- include('../Partials/header.ejs') %>
+  <body>
+    <nav class="navbar navbar-light bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="/img/guia.png" alt="Logo" />
+        </a>
+      </div>
+    </nav>
+    <div class="container quiz">
+      <div class="card">
+        <div class="card-header">
+          <h1>Cadastro de perguntas</h1>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="/save-quiz">
+            <label>Título</label><br/>
+            <input name="titulo" placeholder="Título da pergunta" class="form-control"/>
+            <label>Descrição</label><br/>
+            <input name="descricao" placeholder="Insira a descrição ..." class="form-control"/> <br/>
+            <button class="btn btn-primary" >Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include('../Partials/footer.ejs') %>
