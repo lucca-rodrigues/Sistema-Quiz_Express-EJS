@@ -25,7 +25,6 @@ app.get("/new", (req, res) =>{
 app.get("/", (req, res) => {
     Perguntas.findAll({ raw: true, order:[['createdAt', 'DESC']]})
     .then(perguntas => {
-        // const {id, titulo, descricao} = perguntas
         res.render("Perguntas", {perguntas});
     })
 });
@@ -38,8 +37,8 @@ app.get("/pergunta/:id", (req, res) => {
     })
     .then(pergunta => {
         if(pergunta != undefined) {
-            const {titulo, descricao} = pergunta;
-            res.render("Detalhes", { titulo, descricao});
+            const {id, titulo, descricao} = pergunta;
+            res.render("Detalhes", { id, titulo, descricao });
         } 
         res.redirect("/");
     })

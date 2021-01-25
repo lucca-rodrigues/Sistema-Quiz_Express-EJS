@@ -15,6 +15,7 @@
         <form method="POST" action="/res">
           <label>Resposta:</label><br /><br />
           <textarea name="resposta" placeholder="Digite sua resposta" class="form-control"></textarea><br/>
+          <input type="hidden" name="pergunta" value="<%= id %>">
           <button class="btn btn-success">Responder</button>
         </form>
       </div>
