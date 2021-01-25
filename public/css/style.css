@@ -1,1 +1,5 @@
 .quiz{margin-top: 10vh;}
+
+.card-body .right{
+    float: right!important;
+}
