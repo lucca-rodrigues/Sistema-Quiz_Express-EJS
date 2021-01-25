@@ -1,0 +1,19 @@
+<%- include('../Partials/header.ejs') %>
+<body>
+    <%- include('../Partials/navbar.ejs') %>
+  <div class="container quiz">
+    <div class="card">
+      <div class="card-header">
+        <h1>Todas as perguntas:</h1>
+      </div>
+      <div class="card-body">
+        <% perguntas.forEach(pergunta =>{ %> 
+            <div>
+                <%= pergunta.titulo %> 
+            </div>
+        <% }); %> 
+      </div>
+    </div>
+  </div>
+</body>
+<%- include('../Partials/footer.ejs') %>

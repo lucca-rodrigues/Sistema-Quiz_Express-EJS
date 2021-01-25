@@ -21,6 +21,13 @@ app.get("/", (req, res) =>{
     res.render("Form");
 });
 
+app.get("/perguntas", (req, res) => {
+    Perguntas.findAll({ raw: true})
+    .then(perguntas => {
+        res.render("Perguntas", {perguntas});
+    })
+});
+
 app.get("/succes", (req, res) =>{
     res.render("Success");
 });
@@ -36,4 +43,4 @@ app.post("/save-quiz", (req, res) =>{
 });
 
 
-app.listen(8080, () => console.log("App Started on port 8080 ✔"))
+app.listen(8080, () => console.log("App Started on port 8080 ✔"));
