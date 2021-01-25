@@ -21,9 +21,18 @@ app.get("/", (req, res) =>{
     res.render("Form");
 });
 
+app.get("/succes", (req, res) =>{
+    res.render("Success");
+});
+
 app.post("/save-quiz", (req, res) =>{
     const {titulo, descricao} = req.body;
-    res.send(`Dados enviados com sucesso! ${titulo}, ${descricao}`);
+
+    Perguntas.create({titulo, descricao})
+        .then(() => {
+            res.redirect("/succes");
+        }
+    );
 });
 
 
