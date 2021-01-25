@@ -1,0 +1,25 @@
+<%- include('../Partials/header.ejs') %>
+<body>
+  <%- include('../Partials/navbar.ejs') %>
+  <div class="container quiz">
+      <div class="row">
+          <h1><%= titulo %> </h1>
+          <p><%= descricao %> </p>
+      </div>
+    <div class="card">
+      <div class="card-header">
+        <h1>Responder pergunta?</h1>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/res">
+          <label>Título</label><br/>
+          <input name="titulo" placeholder="Título da pergunta" class="form-control"/>
+          <label>Descrição</label><br/>
+          <input name="descricao" placeholder="Insira a descrição ..." class="form-control"/> <br/>
+          <button class="btn btn-primary" >Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<%- include('../Partials/footer.ejs') %>

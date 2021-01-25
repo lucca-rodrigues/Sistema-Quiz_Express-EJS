@@ -4,7 +4,7 @@
   <div class="container quiz">
         <h1>Todas as perguntas:</h1>
       <div class="card-body">
-        <% perguntas.forEach(pergunta =>{ %> 
+        <% perguntas.forEach(pergunta => { %> 
             <br/>
             <div class="card">
                 <div class="card-header">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                     <%= pergunta.descricao %> 
-                    <a href="/perguntar" class="btn btn-primary right">Responder pergunta</a>
+                    <a href="/pergunta/<%= pergunta.id %>" class="btn btn-primary right">Responder pergunta</a>
                 </div>
             </div>
         <% }); %> 

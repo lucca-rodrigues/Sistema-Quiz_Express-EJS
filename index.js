@@ -17,14 +17,30 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.get("/", (req, res) =>{
+app.get("/new", (req, res) =>{
     res.render("Form");
 });
 
-app.get("/perguntas", (req, res) => {
+app.get("/", (req, res) => {
     Perguntas.findAll({ raw: true, order:[['createdAt', 'DESC']]})
     .then(perguntas => {
+        // const {id, titulo, descricao} = perguntas
         res.render("Perguntas", {perguntas});
+    })
+});
+
+app.get("/pergunta/:id", (req, res) => {
+    const id = req.params.id;
+
+    Perguntas.findOne({
+        where: {id}
+    })
+    .then(pergunta => {
+        if(pergunta != undefined) {
+            const {titulo, descricao} = pergunta;
+            res.render("Detalhes", { titulo, descricao});
+        } 
+        res.redirect("/");
     })
 });
 
