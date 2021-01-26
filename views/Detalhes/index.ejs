@@ -3,9 +3,24 @@
   <%- include('../Partials/navbar.ejs') %>
   <div class="container quiz">
       <div class="row">
-          <h1><%= titulo %> </h1>
-          <p><%= descricao %> </p>
+          <h1><%= pergunta.titulo %> </h1>
+          <p><%= pergunta.descricao %> </p>
       </div>
+      <% if(respostas != 0){ %> 
+        <div class="row">
+          <h4>Respostas:</h4>
+          <% respostas.forEach(data => { %>
+            <div class="card mb-4">
+              <div class="card-body">
+                <%= data.resposta %>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <p>Poxa, parece que ainda não existe nenhuma resposta ... </p> 
+      <% } %> 
+      
     <hr/>
     <div class="card">
       <div class="card-header">
@@ -15,7 +30,7 @@
         <form method="POST" action="/save-response">
           <label>Resposta:</label><br /><br />
           <textarea name="resposta" placeholder="Digite sua resposta" class="form-control"></textarea><br/>
-          <input type="hidden" name="pergunta" value="<%= id %>">
+          <input type="hidden" name="pergunta" value="<%= pergunta.id %>">
           <button class="btn btn-success">Responder</button>
         </form>
       </div>

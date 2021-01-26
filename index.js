@@ -29,20 +29,24 @@ app.get("/", (req, res) => {
     })
 });
 
-app.get("/pergunta/:id", (req, res) => {
-    const id = req.params.id;
-
+app.get("/pergunta/:id",(req ,res) => {
+    var id = req.params.id;
     Perguntas.findOne({
-        where: {id}
-    })
-    .then(pergunta => {
-        if(pergunta != undefined) {
-            const {id, titulo, descricao} = pergunta;
-            res.render("Detalhes", { id, titulo, descricao });
-        } 
-        res.redirect("/");
-    })
-});
+        where: {id: id}
+    }).then(pergunta => {
+        if(pergunta != undefined){
+            Respostas.findAll({
+                where: {perguntaId: pergunta.id},
+                order:[['id','DESC']]
+            }).then(respostas => {
+                res.render("Detalhes", { pergunta,respostas });
+            });
+        }else{
+            res.redirect("/");
+        }
+    });
+})
+
 
 app.get("/succes", (req, res) =>{
     res.render("Success");
