@@ -58,5 +58,16 @@ app.post("/save-quiz", (req, res) =>{
     );
 });
 
+app.post("/save-response", (req, res) =>{
+    const resposta = req.body.resposta;
+    const perguntaId = req.body.pergunta;
+
+    Respostas.create({resposta, perguntaId})
+        .then(() => {
+            res.redirect(`/pergunta/${perguntaId}`);
+        }
+    );
+});
+
 
 app.listen(8080, () => console.log("App Started on port 8080 ✔"));
