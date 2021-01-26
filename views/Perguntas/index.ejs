@@ -2,7 +2,14 @@
 <body>
     <%- include('../Partials/navbar.ejs') %>
   <div class="container quiz">
-        <h1>Todas as perguntas:</h1>
+      <div class="row">
+          <div class="col-lg-6">
+              <h1>Todas as perguntas:</h1>
+          </div>
+            <div class="col-lg-6">
+              <a href="/new" style="float:right">Fazer uma pergunta</a>
+          </div>
+      </div>
       <div class="card-body">
         <% perguntas.forEach(pergunta => { %> 
             <br/>
