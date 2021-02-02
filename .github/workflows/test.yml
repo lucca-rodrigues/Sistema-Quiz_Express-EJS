@@ -7,6 +7,7 @@ on:
     branches: [ main ]
 
 env:
+  CI: true
   HOST: ${{ secrets.HOST }}
   PORT: ${{ secrets.PORT }}
   USER: ${{ secrets.USER }}
@@ -24,7 +25,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: npm install
-    - run: npm run build
-      env:
-        CI: true
+    - name: Project Install
+        run: npm install
+
+    - name: Project Start prod
+        run: npm run build
+        
