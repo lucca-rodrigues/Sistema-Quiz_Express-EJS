@@ -28,14 +28,11 @@ jobs:
           database_type: ${{ secrets.DATABASE_TYPE }}
           user: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
-          source: "tests/a.txt,test/b.txt"
-          target: "test"
-          
-        run: cd apps_nodejs/test-ci
         
-          
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd apps_nodejs/test-ci
+          npm install
           
         
       - name: Start Server
