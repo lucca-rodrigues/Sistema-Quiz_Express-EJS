@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+    types: [closed]
+    
+env:
+  HOST: ${{ secrets.HOST }}
+  PORT: ${{ secrets.PORT }}
+  USER: ${{ secrets.USER }}
+  DATABASE: ${{ secrets.DATABASE }}
+  PASSWORD: ${{ secrets.PASSWORD }}
+  DATABASE_TYPE: ${{ secrets.DATABASE_TYPE }}
+
+
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-ine script
+        run: echo Hello, world!
+  
+  deploy-prod:
+    runs-on: ubuntu-latest
+    environment: 
+      name: development
+    
+    needs: build
+
+    steps:
+      - name: Run a one-line script
+        run: echo Deploy prod
+        
+        
+      
+
