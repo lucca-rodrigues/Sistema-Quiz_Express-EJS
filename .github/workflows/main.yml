@@ -31,8 +31,7 @@ jobs:
       - name: Run a one-line script
         run: |
           npm install
-          npm run build
-
+          npm start
         
         
       
