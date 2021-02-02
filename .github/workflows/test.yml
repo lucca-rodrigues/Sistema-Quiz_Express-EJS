@@ -25,9 +25,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: Project Install
-        run: npm install
 
     - name: Project Start prod
-        run: npm run build
+        run: pm2 restart server.js --watch
         
