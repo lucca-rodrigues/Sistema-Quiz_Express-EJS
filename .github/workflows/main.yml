@@ -3,6 +3,15 @@ name: CI
 on:
   push:
     branches: [ main ]
+    
+env:
+  CI: true
+  host: ${{ secrets.HOST }}
+  port: ${{ secrets.PORT }}
+  database: ${{ secrets.DATABASE }}
+  database_type: ${{ secrets.DATABASE_TYPE }}
+  user: ${{ secrets.USER }}
+  password: ${{ secrets.PASSWORD }}
 
 jobs:
 
@@ -20,13 +29,6 @@ jobs:
           
       - name: Enter folder
         run: cd /apps_nodejs/test-ci
-        env:
-          host: ${{ secrets.HOST }}
-          port: ${{ secrets.PORT }}
-          database: ${{ secrets.DATABASE }}
-          database_type: ${{ secrets.DATABASE_TYPE }}
-          user: ${{ secrets.USER }}
-          password: ${{ secrets.PASSWORD }}
         
       - name: Install dependencies
         run: npm install
