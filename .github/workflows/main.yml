@@ -22,7 +22,7 @@ jobs:
           
       - name: Enter folder
         run: cd /apps_nodejs/test-ci
-        with:
+        env:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           database: ${{ secrets.DATABASE }}
