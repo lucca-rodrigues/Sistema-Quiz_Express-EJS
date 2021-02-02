@@ -29,9 +29,7 @@ jobs:
 
     steps:
       - name: Run a one-line script
-        run: |
-          npm install
-          npm start
+        run: npm start
         
         
       
