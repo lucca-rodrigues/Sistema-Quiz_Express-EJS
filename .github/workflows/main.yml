@@ -21,6 +21,7 @@ jobs:
           node-version: 12.x 
           
       - name: Enter folder
+        run: cd apps_nodejs/test-ci
         with:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
@@ -30,10 +31,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
         
       - name: Install dependencies
-        run: |
-          cd apps_nodejs/test-ci
-          npm install
+        run: npm install
           
-        
       - name: Start Server
         run: node index.js
