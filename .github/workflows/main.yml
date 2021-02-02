@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches: [ main ]
-    
+
 env:
   CI: true
   host: ${{ secrets.HOST }}
@@ -24,8 +24,12 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
       
+      # Setup Node JS
+      - uses: actions/checkout@v1
       - name: Setup Node.js environment
-        uses: actions/setup-node@v1.4.2
+        uses: actions/setup-node@v1
+        with:
+           node-version: 12.x
           
       - name: Enter folder
         run: cd /apps_nodejs/test-ci
