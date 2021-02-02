@@ -1,14 +1,14 @@
 const Sequelize = require('sequelize');
 
-const USER =  secrets.USER;
-const DATABASE =  secrets.DATABASE;
-const PASSWORD =  secrets.PASSWORD;
-const HOST =  secrets.HOST;
-const DATABASE_TYPE =  secrets.DATABASE_TYPE;
+const user =  secrets.USER;
+const database =  secrets.DATABASE;
+const password =  secrets.PASSWORD;
+const host =  secrets.HOST;
+const database_type =  secrets.DATABASE_TYPE;
 
-const connection = new Sequelize(USER, DATABASE, PASSWORD, {
-    host: HOST,
-    dialect: DATABASE_TYPE,
+const connection = new Sequelize(user, database, password, {
+    host: host,
+    dialect: database_type,
 });
 
 module.exports = connection;
