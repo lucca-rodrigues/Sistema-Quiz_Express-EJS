@@ -29,7 +29,10 @@ jobs:
 
     steps:
       - name: Run a one-line script
-        run: echo Deploy prod
+        run: |
+          npm install
+          npm run build
+
         
         
       
