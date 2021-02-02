@@ -26,5 +26,17 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Start server
+      - name: Set Environment
+        with:
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          database: ${{ secrets.DATABASE }}
+          database_type: ${{ secrets.DATABASE_TYPE }}
+          user: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          source: "tests/a.txt,test/b.txt"
+          target: "test"
+          
+        
+      - name: Start Server
         run: node index.js
