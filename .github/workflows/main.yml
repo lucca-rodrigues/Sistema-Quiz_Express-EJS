@@ -43,6 +43,6 @@ jobs:
           script: |
             cd ~/test-ci
             npm install
-            cd ..
-            pm2 start test-ci --watch
+            # cd ..
+            # pm2 start test-ci --watch
   
