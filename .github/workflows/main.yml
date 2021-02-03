@@ -69,6 +69,7 @@ jobs:
 
   create-envfile:
     runs-on: ubuntu-18.04
+    needs: [deploy-production]
  
     steps:
     - name: Make envfile
