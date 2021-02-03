@@ -79,7 +79,6 @@ jobs:
         with:
           node-version: 12.x
           run: |
-            cd test-ci
             git pull
             npm install
             cd ..
