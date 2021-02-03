@@ -16,7 +16,7 @@ jobs:
 
   # CREATE .ENV
   create-envfile:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     needs: [deploy-dev]
  
     steps:
@@ -78,7 +78,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-          script: |
+          run: |
             cd test-ci
             git pull
             npm install
