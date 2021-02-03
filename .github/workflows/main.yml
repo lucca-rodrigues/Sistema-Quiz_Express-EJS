@@ -16,8 +16,8 @@ jobs:
       with:
         node-version: 12.x
 
-    - name: Install dependencies
-      run: yarn
+    # - name: Install dependencies
+    #   run: yarn install
       
     # - name: Run build
     #   run: yarn build
@@ -41,6 +41,6 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd ~/test-ci
-          yarn
-          node_modules/.bin/sequelize init
+          yarn install
+          
           pm2 restart index.js
