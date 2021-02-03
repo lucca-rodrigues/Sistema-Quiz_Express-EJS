@@ -7,11 +7,11 @@ on:
 jobs:
 
   deploy-dev:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: Dev
-      run: echo Deploy Dev!
+    steps:
+      - name: Dev
+        run: echo Deploy Dev!
 
   deploy-production:
     runs-on: ubuntu-latest
