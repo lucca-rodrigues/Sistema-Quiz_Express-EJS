@@ -38,10 +38,8 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
-          database: ${{ secrets.DATABASE }}
-          user: ${{ secrets.USER }}
+          username: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
-          database_type:  ${{ secrets.DATABASE_TYPE }}
           script: |
             cd ~/quiz
             npm install
