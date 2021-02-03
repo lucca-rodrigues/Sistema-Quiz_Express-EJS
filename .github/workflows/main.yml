@@ -55,8 +55,8 @@ jobs:
            node-version: 12.x
           
       - name: Install and Start Aplication
-        uses: appleboy/ssh-action@master
-      
+        # uses: appleboy/ssh-action@master
+      - uses: actions/checkout@v2
 
         with:
           script: |
