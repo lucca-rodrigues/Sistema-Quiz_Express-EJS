@@ -60,7 +60,8 @@ jobs:
           node-version: 12.x
           script: |
             cd test-ci
+            git pull
             npm install
             cd ..
-            pm2 start test-ci --watch
+            pm2 restart test-ci --watch
   
