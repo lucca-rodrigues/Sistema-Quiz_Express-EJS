@@ -43,5 +43,6 @@ jobs:
           script: |
             cd ~/test-ci
             npm install
-            pm2 restart index.js --watch
+            cd ..
+            pm2 start test-ci --watch
   
