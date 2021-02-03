@@ -6,6 +6,30 @@ on:
 
 jobs:
 
+  # VERIFY .env
+  file_existence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: ".env"
+
+      - name: File exists
+        if: steps.check_files.outputs.files_exists == 'true'
+        with:
+          envkey_HOST: ${{ secrets.HOST }}
+          envkey_PORT: ${{ secrets.PORT }}
+          envkey_USER: ${{ secrets.USER }}
+          envkey_DATABASE: ${{ secrets.DATABASE }}
+          envkey_PASSWORD: ${{ secrets.PASSWORD }}
+          file_name: .env
+  
+  # TEST DEPLOY
   deploy-dev:
     runs-on: ubuntu-latest
 
@@ -13,6 +37,7 @@ jobs:
       - name: Dev
         run: echo Deploy Dev!
 
+  # DEPLOY PRODUCTION
   deploy-production:
     runs-on: ubuntu-latest
     needs: [deploy-dev]
@@ -31,12 +56,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
            node-version: 12.x
+
+      - name: Create EnvFile in Prod
+      - uses: actions/checkout@v2
+        - run: echo Verify .env
+          if: steps.check.outputs.exists == 'false'
+        - run: echo "Write a file to S3 bucket with name \${GITHUB_SHA}"
+          if: steps.check.outputs.exists == 'false'
           
       - name: Install and Start Aplication
-        uses: appleboy/ssh-action@master
-        
+        # uses: appleboy/ssh-action@master
+      - uses: actions/checkout@v2
+
         with:
-         
           script: |
             cd ~/test-ci
             npm install
