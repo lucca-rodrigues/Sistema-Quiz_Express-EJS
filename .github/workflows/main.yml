@@ -4,15 +4,6 @@ on:
   push:
     branches: [ main ]
 
-env:
-  CI: true
-  host: ${{ secrets.HOST }}
-  port: ${{ secrets.PORT }}
-  database: ${{ secrets.DATABASE }}
-  database_type: ${{ secrets.DATABASE_TYPE }}
-  user: ${{ secrets.USER }}
-  password: ${{ secrets.PASSWORD }}
-
 jobs:
 
   build:
@@ -31,11 +22,17 @@ jobs:
         with:
            node-version: 12.x
           
-      - name: Enter folder
-        run: cd ~/apps_nodejs/test-ci
-        
-      - name: Install dependencies
-        run: npm install
-          
-      - name: Start Server
-        run: node index.js
+      - name: Install and Start Aplication
+        uses: appleboy/ssh-action@master
+        with:
+          CI: true
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          database: ${{ secrets.DATABASE }}
+          database_type: ${{ secrets.DATABASE_TYPE }}
+          user: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd ~/apps_nodejs/test-ci
+            npm install
+            pm2 restart index.js --watch
