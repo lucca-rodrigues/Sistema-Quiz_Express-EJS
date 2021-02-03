@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd ~/quiz
+            cd ~/test-ci
             npm install
             pm2 restart index.js --watch
   
