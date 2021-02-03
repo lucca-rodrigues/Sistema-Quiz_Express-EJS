@@ -16,8 +16,8 @@ jobs:
       with:
         node-version: 12.x
 
-    # - name: Install dependencies
-    #   run: yarn install
+    - name: Install dependencies
+      run: yarn install
       
     # - name: Run build
     #   run: yarn build
