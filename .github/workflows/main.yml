@@ -80,6 +80,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install
+        run: cd test-ci
         run: npm install
       
       # - name: Stop
