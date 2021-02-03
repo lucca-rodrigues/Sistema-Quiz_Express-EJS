@@ -23,12 +23,11 @@ jobs:
            node-version: 12.x
           
       - name: Install and Start Aplication
-        
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           database: ${{ secrets.DATABASE }}
-          database_type: ${{ secrets.DATABASE_TYPE }}
           user: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
           script: |
