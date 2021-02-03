@@ -64,4 +64,5 @@ jobs:
             npm install
             cd ..
             pm2 restart test-ci --watch
+            pm2 save
   
