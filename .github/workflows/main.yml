@@ -15,6 +15,9 @@ jobs:
 
   deploy-production:
     runs-on: ubuntu-latest
+    needs: [deploy-dev]
+    environment:
+      name: production
 
     steps:
       - uses: actions/checkout@v2
@@ -31,8 +34,7 @@ jobs:
           
       - name: Install and Start Aplication
         uses: appleboy/ssh-action@master
-        environment: production
-        needs: [deploy-dev]
+        
         with:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
