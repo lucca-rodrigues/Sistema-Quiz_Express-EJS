@@ -5,90 +5,42 @@ on:
     branches: [ main ]
 
 jobs:
-  
-  # TEST DEPLOY
-  deploy-dev:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Dev
-        run: echo Deploy Dev!
+    - uses: actions/checkout@v2
 
-  # CREATE .ENV
-  create-envfile:
-    runs-on: ubuntu-latest
-    needs: [deploy-dev]
- 
-    steps:
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2.1.1
       with:
-        envkey_APP_HOST: ${{ secrets.APP_HOST }}
-        envkey_APP_PORT: ${{ secrets.APP_PORT }}
+        node-version: 12.x
 
-        envkey_DB_HOST: ${{ secrets.DB_HOST }}
-        envkey_DB_PORT: ${{ secrets.DB_PORT }}
-        envkey_DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
-        envkey_DB_USER: ${{ secrets.DB_USER }}
-        envkey_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        envkey_DB_DATABASE: ${{ secrets.DB_DATABASE }}
-        file_name: .env
-
-  # DEPLOY PRODUCTION
-  deploy-production:
-    runs-on: ubuntu-latest
-    needs: [create-envfile]
-    environment:
-      name: production
-
-    steps:
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Checkout code
-        uses: actions/checkout@v1
-
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: ".env"
-
-      - name: File exists
-        uses: SpicyPizza/create-envfile@v1
-        if: steps.check_files.outputs.files_exists == 'false'
-        env:
-          envkey_APP_HOST: ${{ secrets.APP_HOST }}
-          envkey_APP_PORT: ${{ secrets.APP_PORT }}
-
-          envkey_DB_HOST: ${{ secrets.DB_HOST }}
-          envkey_DB_PORT: ${{ secrets.DB_PORT }}
-          envkey_DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
-          envkey_DB_USER: ${{ secrets.DB_USER }}
-          envkey_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          envkey_DB_DATABASE: ${{ secrets.DB_DATABASE }}
-          file_name: .env
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v1
-        with:
-           node-version: 12.x
-          
-      - name: Install
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      # - name: Cd test-ci
-      #   run: cd test-ci
-
-      - name: Install
-        run: npm install      
-      # - name: Stop
-      #   run: pm2 stop test-ci
+    - name: Install dependencies
+      run: yarn
       
-      # - name: Start
-      #   run: pm2 start test-ci --watch
-          
-
-  
+    - name: Run build
+      run: yarn build
+    
+    - name: Copy dist to Digital Ocean
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{ secrets.SSH_KEY }}
+        source: ".,!node_modules"
+        target: "~/test-ci"
+      
+    - name: Run production scripts
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        port: ${{ secrets.SSH_PORT }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd ~/test-ci
+          yarn
+          ./node_modules/.bin/typeorm migration:run
+          pm2 restart test-ci
