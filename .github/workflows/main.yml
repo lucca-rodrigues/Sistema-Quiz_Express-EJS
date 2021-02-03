@@ -79,8 +79,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cd test-ci
-        run: cd test-ci
+      # - name: Cd test-ci
+      #   run: cd test-ci
 
       - name: Install
         run: npm install      
