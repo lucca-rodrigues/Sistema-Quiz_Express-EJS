@@ -76,13 +76,11 @@ jobs:
           
       - name: Install and Start Aplication
         uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-          run: |
-            git pull
-            npm install
-            cd ..
-            pm2 restart test-ci --watch
-            pm2 save
+        run: |
+          git pull
+          npm install
+          cd ..
+          pm2 restart test-ci --watch
+          pm2 save
 
   
