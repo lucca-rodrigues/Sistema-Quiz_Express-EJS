@@ -54,7 +54,6 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello, world!
-      - uses: actions/checkout@v1
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v1
@@ -62,7 +61,6 @@ jobs:
            node-version: 12.x
 
       - name: Create EnvFile in Prod
-      - uses: actions/checkout@v2
       - run: echo Verify .env
         if: steps.check.outputs.exists == 'false'
       - run: echo "Write a file to S3 bucket with name \${GITHUB_SHA}"
@@ -74,7 +72,7 @@ jobs:
 
         with:
           script: |
-            cd ~/test-ci
+            cd test-ci
             npm install
             cd ..
             pm2 start test-ci --watch
