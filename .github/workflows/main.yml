@@ -53,9 +53,8 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello, world!
-      
-      # Setup Node JS
       - uses: actions/checkout@v1
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v1
         with:
