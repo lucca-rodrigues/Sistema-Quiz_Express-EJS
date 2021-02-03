@@ -36,7 +36,7 @@ jobs:
 
       - name: File exists
         uses: SpicyPizza/create-envfile@v1
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.check_files.outputs.files_exists == 'false'
         env:
           envkey_APP_HOST: ${{ secrets.APP_HOST }}
           envkey_APP_PORT: ${{ secrets.APP_PORT }}
