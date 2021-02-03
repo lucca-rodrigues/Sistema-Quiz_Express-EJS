@@ -6,7 +6,14 @@ on:
 
 jobs:
 
-  build:
+  deploy-dev:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Dev
+      run: echo Deploy Dev!
+
+  deploy-production:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,13 +31,17 @@ jobs:
           
       - name: Install and Start Aplication
         uses: appleboy/ssh-action@master
+        environment: production
+        needs: [deploy-dev]
         with:
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           database: ${{ secrets.DATABASE }}
           user: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
+          database_type:  ${{ secrets.DATABASE_TYPE }}
           script: |
-            cd ~/apps_nodejs/test-ci
+            cd ~/quiz
             npm install
             pm2 restart index.js --watch
+  
