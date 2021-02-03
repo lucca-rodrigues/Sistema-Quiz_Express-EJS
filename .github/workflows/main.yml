@@ -25,7 +25,6 @@ jobs:
       - name: Install and Start Aplication
         uses: appleboy/ssh-action@master
         with:
-          CI: true
           host: ${{ secrets.HOST }}
           port: ${{ secrets.PORT }}
           database: ${{ secrets.DATABASE }}
