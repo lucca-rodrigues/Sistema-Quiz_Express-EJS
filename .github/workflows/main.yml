@@ -62,10 +62,10 @@ jobs:
 
       - name: Create EnvFile in Prod
       - uses: actions/checkout@v2
-        - run: echo Verify .env
-          if: steps.check.outputs.exists == 'false'
-        - run: echo "Write a file to S3 bucket with name \${GITHUB_SHA}"
-          if: steps.check.outputs.exists == 'false'
+      - run: echo Verify .env
+        if: steps.check.outputs.exists == 'false'
+      - run: echo "Write a file to S3 bucket with name \${GITHUB_SHA}"
+        if: steps.check.outputs.exists == 'false'
           
       - name: Install and Start Aplication
         # uses: appleboy/ssh-action@master
