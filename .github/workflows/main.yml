@@ -82,8 +82,8 @@ jobs:
       - name: Install
         run: npm install
       
-      - name: Stop
-        run: pm2 stop test-ci
+      # - name: Stop
+      #   run: pm2 stop test-ci
       
       - name: Start
         run: pm2 start test-ci --watch
