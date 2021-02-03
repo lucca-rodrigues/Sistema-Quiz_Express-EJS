@@ -54,13 +54,14 @@ jobs:
         with:
            node-version: 12.x
           
-      # - name: Install and Start Aplication
-      #   # uses: appleboy/ssh-action@master
-      # - uses: actions/checkout@v2
-      #   with:
-      #     script: |
-      #       cd test-ci
-      #       npm install
-      #       cd ..
-      #       pm2 start test-ci --watch
+      - name: Install and Start Aplication
+        uses: actions/setup-node@v1
+        with:
+           node-version: 12.x
+           
+        script: |
+          cd test-ci
+          npm install
+          cd ..
+          pm2 start test-ci --watch
   
