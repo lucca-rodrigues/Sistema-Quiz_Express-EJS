@@ -1,4 +1,5 @@
 const express = require("express");
+require('dotenv').config();
 const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/connection");
@@ -74,4 +75,4 @@ app.post("/save-response", (req, res) =>{
 });
 
 
-app.listen(21006, () => console.log("App Started on port 8080 ✔"));
+app.listen(process.env.APP_PORT || 8080, () => console.log("App Started on port 8080 ✔"));

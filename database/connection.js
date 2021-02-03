@@ -1,16 +1,17 @@
 const Sequelize = require('sequelize');
 
-const user =  process.env.APP_USER;
-const database =  process.env.APP_DATABASE;
-const password =  process.env.APP_PASSWORD;
-// const database_type =  process.env.DATABASE_TYPE;
-const host =  process.env.APP_HOST;
-const port =  process.env.APP_PORT;
+const user =  process.env.DB_USER;
+const database =  process.env.DB_DATABASE;
+const password =  process.env.DB_PASSWORD;
 
-const connection = new Sequelize(user, database, password, {
+const host =  process.env.DB_HOST;
+const port =  process.env.DB_PORT;
+const database_type =  process.env.DB_CONNECTION;
+
+const connection = new Sequelize(database, user, password, {
     host: host,
     port: port,
-    dialect: 'postgresql'
+    dialect: database_type
 });
 
 module.exports = connection;
