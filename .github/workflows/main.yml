@@ -40,9 +40,5 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.PASSWORD }}
-          script: |
-            cd ~/test-ci
-            npm install
-            # cd ..
-            # pm2 start test-ci --watch
+
   
