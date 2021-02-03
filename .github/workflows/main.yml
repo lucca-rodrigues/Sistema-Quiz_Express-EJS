@@ -22,11 +22,15 @@ jobs:
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
         with:
-          envkey_HOST: ${{ secrets.HOST }}
-          envkey_PORT: ${{ secrets.PORT }}
-          envkey_USER: ${{ secrets.USER }}
-          envkey_DATABASE: ${{ secrets.DATABASE }}
-          envkey_PASSWORD: ${{ secrets.PASSWORD }}
+          envkey_APP_HOST: ${{ secrets.APP_HOST }}
+          envkey_APP_PORT: ${{ secrets.APP_PORT }}
+
+          envkey_DB_HOST: ${{ secrets.DB_HOST }}
+          envkey_DB_PORT: ${{ secrets.DB_PORT }}
+          envkey_DB_CONNECTION: ${{ secrets.DB_CONNECTION }}
+          envkey_DB_USER: ${{ secrets.DB_USER }}
+          envkey_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          envkey_DB_DATABASE: ${{ secrets.DB_DATABASE }}
           file_name: .env
   
   # TEST DEPLOY
