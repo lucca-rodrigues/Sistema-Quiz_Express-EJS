@@ -20,6 +20,7 @@ jobs:
           files: ".env"
 
       - name: File exists
+        uses: SpicyPizza/create-envfile@v1
         if: steps.check_files.outputs.files_exists == 'true'
         with:
           envkey_APP_HOST: ${{ secrets.APP_HOST }}
