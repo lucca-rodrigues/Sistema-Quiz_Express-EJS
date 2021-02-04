@@ -56,7 +56,7 @@ Depois que tiver instalado todas as dependências e o banco de dados criado e co
 node index.js
 ```
 
-logo uma página será aberta em seu navegador com a url: http://localhost:8080 se não abrir automaticamente você pode clicar no link que será exibido no terminal
+logo uma página será aberta em seu navegador, se não abrir automaticamente você pode digital http://localhost:numerodaporta
 
 Pronto agora eu ja estou te vendo! 🙂😉
 
