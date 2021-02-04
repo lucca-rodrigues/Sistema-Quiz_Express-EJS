@@ -38,9 +38,17 @@ yarn install ou npm install
 # Configuração do Banco
 Você precisa criar uma conexão com um banco de dados local para funcionamento da aplicação.
 
-Crie um banco mySql e informe as credenciais dentro de 
-```
-database/connection.js
+Crie um banco mySql e informe as credenciais dentro de um arquivo .env desta forma:
+```javascript
+APP_HOST=localhost
+APP_PORT=3333
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_CONNECTION=databaseType // mysql //postgres etc...
+DB_USER=databaseUser
+DB_PASSWORD=databasePassword
+DB_DATABASE=databaseName
 ```
 
 Depois que tiver instalado todas as dependências e o banco de dados criado e conectado basta rodar:
