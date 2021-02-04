@@ -42,4 +42,4 @@ jobs:
         script: |
           cd test-ci
           yarn install
-          pm2 start index.js
+          pm2 restart index.js --force
