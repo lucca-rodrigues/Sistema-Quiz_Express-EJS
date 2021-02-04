@@ -1,5 +1,4 @@
 name: CI
-
 on:
   push:
     branches: [ main ]
@@ -31,7 +30,7 @@ jobs:
     #     key: ${{ secrets.SSH_KEY }}
     #     source: ".,!node_modules"
     #     target: "~/test-ci"
-    
+
     - name: Run production scripts
       uses: appleboy/ssh-action@master
       with:
