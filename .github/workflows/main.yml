@@ -40,5 +40,6 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          
+          cd test-ci
+          yarn install
           pm2 start index.js
